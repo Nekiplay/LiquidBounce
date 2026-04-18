@@ -132,9 +132,7 @@ object FeatureChestAura : ToggleableValueGroup(ModuleChestStealer, "Aura", true)
     private val simulatedTickHandler = handler<RotationUpdateEvent> {
         fun isUnblockedChestOrNotChest(state: BlockState, pos: BlockPos): Boolean {
             if (state.block !is ChestBlock) return true
-            if (ChestBlock.isChestBlockedAt(world, pos)) return false
-
-            return !ChestBlock.isChestBlockedAt(world, pos.relative(state.anotherChestPartDirection() ?: return true))
+            return true
         }
 
         if (notDuringCombat && CombatManager.isInCombat) {
